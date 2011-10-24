@@ -1,0 +1,14 @@
+inherit gnome2
+
+HOMEPAGE="http://www.joachim-breitner.de/projects"
+SRC_URI="http://www.joachim-breitner.de/archive/${PN}/${P}.tar.gz"
+
+MAKEOPTS+=" LDFLAGS=-no-undefined"
+
+src_install() {
+	cd ${B}
+	cyginstall
+
+	insinto /etc/profile.d
+	newins ${S}/52load-gtk-vector-screenshot-gtk-module ${PN}.sh
+}
