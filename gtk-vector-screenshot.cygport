@@ -1,0 +1,22 @@
+inherit gnome2
+
+NAME="gtk-vector-screenshot"
+VERSION=0.3.2
+RELEASE=1
+CATEGORY="X11"
+SUMMARY="GTK+ application screenshot utility"
+DESCRIPTION="This gtk module allows you to take a screenshot of a running gtk-3
+application as a vector image, with fully scalable graphics and selectable text.
+It supports rendering the application to PDF, SVG and PostScript."
+HOMEPAGE="http://www.joachim-breitner.de/projects"
+SRC_URI="http://www.joachim-breitner.de/archive/${NAME}/${NAME}-${VERSION}.tar.gz"
+
+MAKEOPTS+=" LDFLAGS=-no-undefined"
+
+src_install() {
+	cd ${B}
+	cyginstall
+
+	insinto /etc/profile.d
+	newins ${S}/52load-gtk-vector-screenshot-gtk-module ${NAME}.sh
+}
